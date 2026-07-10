@@ -223,96 +223,93 @@ details[open] .guideSummary .chev{transform:rotate(90deg)}
 @keyframes confettiFloat{0%{transform:translateY(10px) rotate(0);opacity:0}20%{opacity:1}100%{transform:translateY(-34px) rotate(28deg);opacity:0}}
 
 
-/* ===== 超スモールステップ学習ナビ ===== */
-.stepCoach{
-  margin-top:12px;border:2px solid #bfe0ff;background:linear-gradient(180deg,#f2f9ff,#fff);
-  border-radius:22px;padding:12px;box-shadow:0 9px 20px rgba(47,128,237,.10)
+/* ===== 追加：既存デザイン内に収める丁寧な学習工程 ===== */
+.miniCoach{
+  margin-top:10px;padding:10px 11px;border-radius:17px;
+  background:#eef7ff;border:1px solid #cde9ff;color:#32536f;
+  font-weight:900;font-size:12px;line-height:1.6
 }
-.stepCoachHead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}
-.stepCoachTitle{font-size:15px;font-weight:1000;color:#244e72}
-.phaseBadge{white-space:nowrap;border-radius:999px;padding:5px 9px;background:#fff2c8;border:1px solid #f0d18a;color:#775006;font-size:11px;font-weight:1000}
-.microSteps{display:grid;gap:7px}
-.microStep{display:grid;grid-template-columns:30px 1fr;gap:8px;align-items:start;background:#fff;border:1px solid #dcecf9;border-radius:15px;padding:8px 9px}
-.microNo{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#2f80ed;color:#fff;font-weight:1000;font-size:13px;box-shadow:inset 0 -4px rgba(0,0,0,.12)}
-.microText b{display:block;font-size:12px;color:#263241;margin-bottom:2px}.microText span{display:block;font-size:11px;line-height:1.55;color:#5e7185;font-weight:850}
-.supportMeter{margin-top:9px;background:#fff8df;border:1px solid #f0d18a;border-radius:15px;padding:8px 10px;font-size:12px;font-weight:900;color:#6a4a0d;line-height:1.55}
-.stageCard.returnFocus{animation:returnPulse 1.25s ease 2;box-shadow:0 0 0 7px rgba(242,201,76,.24),var(--shadow)}
-@keyframes returnPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
-.exampleStrip{margin-top:10px;border-radius:17px;background:#f7f1ff;border:1px solid #d9c7f3;padding:10px 11px;color:#563886;font-weight:900;font-size:12px;line-height:1.6}
-.exampleStrip b{color:#3d285f}
-
-
-/* ===== 分岐ベルトコンベア・主語仕分けゲーム ===== */
-.branchTrainer{
-  margin-top:12px;background:linear-gradient(180deg,#fffdf8,#f7fbff);
-  border:1px solid var(--line);border-radius:27px;padding:14px;
-  box-shadow:var(--shadow);overflow:hidden
+.miniCoach b{color:#23435d}
+.miniCoachSteps{display:flex;gap:6px;overflow-x:auto;margin-top:8px;padding-bottom:2px}
+.miniCoachStep{
+  flex:0 0 auto;display:flex;align-items:center;gap:5px;background:#fff;
+  border:1px solid #d7eaf9;border-radius:999px;padding:6px 9px;font-size:11px;font-weight:1000
 }
-.branchTrainer.hidden{display:none!important}
-.trainerHead{display:flex;justify-content:space-between;align-items:start;gap:10px}
-.trainerHead h3{margin:0;font-size:20px;line-height:1.35}
-.trainerHead p{margin:5px 0 0;color:#657488;font-size:12px;font-weight:850;line-height:1.55}
-.trainerCount{flex:0 0 auto;background:#fff2c8;border:1px solid #f0d18a;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:1000;color:#775006}
-.trainerRule{margin-top:10px;border-radius:17px;padding:10px 11px;background:#eef7ff;border:1px solid #cfe7ff;color:#31536f;font-size:13px;font-weight:900;line-height:1.65}
-.conveyorStage{position:relative;margin-top:12px;padding:12px 10px 4px;border-radius:22px;background:
- linear-gradient(180deg,#f5f7fa 0 45%,#e8edf3 45% 49%,#f9fbfd 49%);
- border:2px solid #d7dee7;overflow:hidden}
-.conveyorTopLabel{text-align:center;font-size:11px;color:#687789;font-weight:1000;letter-spacing:.08em}
-.subjectCard{
-  width:min(290px,86%);min-height:92px;margin:10px auto 18px;border:3px solid #fff;
-  border-radius:23px;background:linear-gradient(180deg,#fff,#fff9e8);
-  box-shadow:0 14px 26px rgba(38,50,65,.18),inset 0 -7px rgba(242,201,76,.10);
-  display:grid;place-items:center;text-align:center;padding:12px;cursor:grab;touch-action:none;
-  position:relative;z-index:3;transition:transform .2s,opacity .2s
+.miniCoachStep i{
+  width:21px;height:21px;border-radius:50%;display:grid;place-items:center;
+  background:var(--s);color:#fff;font-style:normal;font-size:10px
 }
-.subjectCard.selected{outline:5px solid rgba(242,201,76,.38);transform:translateY(-3px)}
-.subjectCard.dragging{opacity:.65;transform:scale(.97)}
-.subjectMain{font-size:29px;font-weight:1000;line-height:1.15}
-.subjectMeaning{display:block;margin-top:5px;color:#667085;font-size:12px;font-weight:900}
-.belt{height:23px;margin:-7px -10px 0;background:
- repeating-linear-gradient(90deg,#95a3b3 0 25px,#758496 25px 32px);
- border-top:4px solid #dce2e8;border-bottom:4px solid #657382;animation:beltMove 1.1s linear infinite}
-@keyframes beltMove{to{background-position:32px 0}}
-.branchStem{width:18px;height:27px;margin:0 auto;background:#9da9b7;clip-path:polygon(25% 0,75% 0,100% 100%,0 100%)}
-.branchLines{height:46px;position:relative;margin:0 7% -3px}
-.branchLines:before,.branchLines:after{content:"";position:absolute;top:0;height:5px;background:#9da9b7;border-radius:999px;transform-origin:center}
-.branchLines.two:before{left:18%;right:50%;transform:rotate(18deg)}.branchLines.two:after{left:50%;right:18%;transform:rotate(-18deg)}
-.branchLines.three:before{left:7%;right:49%;transform:rotate(15deg)}.branchLines.three:after{left:49%;right:7%;transform:rotate(-15deg)}
-.branchLines.three i{position:absolute;width:5px;background:#9da9b7;height:45px;left:calc(50% - 2px);top:0;border-radius:999px}
-.intakeGrid{display:grid;gap:8px;align-items:stretch}
-.intakeGrid.two{grid-template-columns:1fr 1fr}.intakeGrid.three{grid-template-columns:repeat(3,1fr)}
-.intake{
-  border:3px solid #d9e1ea;background:#fff;border-radius:20px;min-height:120px;padding:9px 5px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-  font-weight:1000;box-shadow:inset 0 -8px rgba(38,50,65,.05),0 8px 14px rgba(38,50,65,.08);
-  position:relative;transition:.18s;cursor:pointer
+.factoryTrainer{margin-top:12px}
+.factoryTrainer.hidden{display:none!important}
+.trainerCard{
+  background:#fff;border:1px solid var(--line);border-radius:21px;padding:12px;
+  box-shadow:0 7px 16px rgba(70,49,17,.06)
 }
-.intake:before{content:"";position:absolute;top:-8px;width:58%;height:13px;border-radius:9px 9px 2px 2px;background:#aeb9c6;border:2px solid #fff}
-.intake.am{border-color:#ffc8ce;background:#fff4f5}.intake.are{border-color:#a9d7ff;background:#f1f8ff}.intake.is{border-color:#d2b8f2;background:#f8f2ff}
-.intake.base{border-color:#add7ff;background:#f1f8ff}.intake.spart{border-color:#b6e8c9;background:#f2fff7}
-.intake.hover,.intake.selectedGate{transform:translateY(-5px);box-shadow:0 0 0 6px rgba(242,201,76,.25),0 12px 20px rgba(38,50,65,.12)}
-.intakeBig{font-size:25px;line-height:1}.intakeSmall{margin-top:6px;font-size:10.5px;color:#667085;line-height:1.4}
-.intakeIcon{font-size:25px;margin-bottom:4px}
-.trainerFeedback{margin-top:10px;border-radius:17px;padding:10px 11px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:900;line-height:1.6;color:#5f6c7b}
+.trainerTitle{font-size:17px;font-weight:1000;line-height:1.45}
+.trainerDesc{margin-top:4px;color:#617086;font-weight:850;font-size:12px;line-height:1.55}
+.trainerCounter{margin-top:8px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.trainerRule{font-size:11px;font-weight:1000;color:#7a5c13;background:#fff4cc;border:1px solid #f0d88c;border-radius:999px;padding:6px 9px}
+.subjectConveyor{margin-top:12px}
+.subjectArrival{
+  background:#fff;border:2px dashed #f0d6a1;border-radius:22px;padding:14px 10px;
+  text-align:center;box-shadow:inset 0 -5px rgba(242,201,76,.08)
+}
+.subjectArrival small{display:block;color:#687789;font-weight:900;font-size:11px;margin-bottom:4px}
+.subjectPiece{
+  display:inline-block;background:#fff;border:2px solid #d9e1ea;border-radius:17px;
+  padding:11px 20px;font-size:24px;font-weight:1000;box-shadow:0 8px 16px rgba(70,49,17,.08);
+  cursor:grab;touch-action:none
+}
+.subjectPiece.selected{border-color:#f2c94c;box-shadow:0 0 0 4px rgba(242,201,76,.28)}
+.subjectPiece.dragging{opacity:.55}
+.conveyorMini{
+  height:18px;margin:8px 4px 0;border-radius:999px;
+  background:repeating-linear-gradient(90deg,#adb7c4 0 16px,#8e9aa8 16px 21px);
+  opacity:.5;animation:miniBelt 1.1s linear infinite
+}
+@keyframes miniBelt{to{background-position:21px 0}}
+.branchArrow{text-align:center;font-size:24px;color:#9aa3af;font-weight:1000;line-height:1;margin:2px 0}
+.trainerBins{display:grid;gap:7px;margin-top:2px}
+.trainerBins.two{grid-template-columns:1fr 1fr}
+.trainerBins.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.trainerBin{
+  background:#fff;border:2px solid #e5dccb;border-radius:18px;padding:8px 5px;min-height:130px;
+  display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;
+  box-shadow:0 8px 16px rgba(70,49,17,.06);position:relative
+}
+.trainerBin[data-gate=am]{background:#fff2f2;border-color:#ffbfc0}
+.trainerBin[data-gate=are]{background:#f1f8ff;border-color:#acd6ff}
+.trainerBin[data-gate=is]{background:#f7f1ff;border-color:#d6c3f3}
+.trainerBin[data-gate=base]{background:#f1f8ff;border-color:#acd6ff}
+.trainerBin[data-gate=spart]{background:#f0fbf4;border-color:#aee5c1}
+.trainerBin.hover,.trainerBin.selectedGate{box-shadow:0 0 0 4px rgba(242,201,76,.28)}
+.trainerBinLabel{font-weight:1000;font-size:17px}
+.trainerBin img{height:44px;object-fit:contain;filter:drop-shadow(0 6px 7px rgba(0,0,0,.08))}
+.trainerDrop{
+  margin-top:auto;width:100%;min-height:39px;border:2px dashed rgba(38,50,65,.18);
+  border-radius:13px;display:grid;place-items:center;padding:4px;
+  color:#8a97a8;font-weight:1000;font-size:10.5px;line-height:1.3
+}
+.lonelyNote{
+  margin-top:10px;border-radius:18px;background:#f7f1ff;border:1px solid #d6c3f3;
+  padding:10px 11px;color:#563886;font-weight:900;font-size:12px;line-height:1.65
+}
+.trainerFeedback{
+  margin-top:10px;border-radius:18px;padding:10px 11px;background:#fff;border:1px solid var(--line);
+  color:#5f6c7b;font-weight:900;font-size:12px;line-height:1.6
+}
 .trainerFeedback.ok{background:#ecfbf1;border-color:#b7ebc8;color:#135c2d}
 .trainerFeedback.ng{background:#fff0f0;border-color:#ffc5c5;color:#8a2525}
-.trainerExample{margin-top:8px;border-radius:15px;background:#fff8df;border:1px solid #f0d18a;padding:9px 10px;text-align:center;font-weight:1000;font-size:15px;line-height:1.55}
-.trainerActions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-.trainerBtn{border:0;border-radius:17px;min-height:50px;padding:10px;font-weight:1000}
-.trainerBtn.secondary{background:#fff;border:1px solid var(--line)}
-.trainerBtn.primary{background:#263241;color:#fff}
-.trainerBtn.success{background:#21a85a;color:#fff;grid-column:1/-1;font-size:17px}
-.trainerComplete{text-align:center;padding:8px 2px}
-.trainerComplete .big{font-size:42px}.trainerComplete b{display:block;font-size:21px;color:#126032;margin:5px 0}
-.lonelyStory{
-  margin-top:10px;background:linear-gradient(180deg,#f8f2ff,#fff);border:1px solid #d8c3f6;
-  border-radius:18px;padding:11px;color:#563886;font-size:13px;font-weight:900;line-height:1.65
-}
-.lonelyCast{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;margin-top:8px}
-.lonelyCast span{background:#fff;border:1px solid #d8c3f6;border-radius:999px;padding:5px 9px;font-size:12px}
+.trainerButtons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.trainerButtons .btn{min-height:46px}
+.trainerFinished{text-align:center;padding:8px 0}
+.trainerFinished .emoji{font-size:38px}
+.trainerFinished b{display:block;font-size:19px;color:#126032;margin:6px 0}
+.stageCard.returnFocus{animation:returnFocus 1s ease 2}
+@keyframes returnFocus{50%{box-shadow:0 0 0 7px rgba(242,201,76,.25),var(--shadow);transform:scale(1.015)}}
 @media(max-width:390px){
- .intakeGrid.three{gap:5px}.intake{min-height:112px;padding:8px 3px}.intakeBig{font-size:21px}.intakeSmall{font-size:9.5px}
- .subjectMain{font-size:25px}
+  .trainerBins.three{gap:5px}.trainerBin{padding:7px 3px}.trainerBinLabel{font-size:15px}
+  .trainerBin img{height:38px}.subjectPiece{font-size:22px}
 }
 
 </style>
@@ -356,17 +353,19 @@ details[open] .guideSummary .chev{transform:rotate(90deg)}
         <div class="roleGrid" id="roleGridStage"></div>
       </details>
     </section>
-
-    <section class="branchTrainer hidden" id="branchTrainer">
-      <div id="branchTrainerBody"></div>
-    </section>
-
     <section class="lessonFlow" id="lessonFlow"></section>
     <section class="questionBox" id="questionBox">
       <div class="qTop"><span class="tag" id="qTag">問題</span><span class="tag" id="qMode">仕分け</span></div>
       <div class="sentence" id="sentence"></div>
       <div class="trans" id="trans"></div>
       <div class="mobileHint" id="mobileHint">カードをタップ → 入れたい箱をタップ。置き直しもできます。</div>
+
+      <div class="miniCoach" id="miniCoach">
+        <b>ひとつずつ見れば大丈夫。</b>
+        <div class="miniCoachSteps" id="miniCoachSteps"></div>
+      </div>
+      <div class="factoryTrainer hidden" id="factoryTrainer"></div>
+
       <div id="sortArea">
         <div class="bins" id="bins"></div>
         <div class="cards" id="cards"></div>
@@ -378,15 +377,6 @@ details[open] .guideSummary .chev{transform:rotate(90deg)}
       <div id="choiceArea" class="hidden">
         <div class="choiceGrid" id="choiceGrid"></div>
       </div>
-
-      <section class="stepCoach" id="stepCoach">
-        <div class="stepCoachHead">
-          <div class="stepCoachTitle">🧑‍🏭 ひとつずつ進めば大丈夫</div>
-          <span class="phaseBadge" id="phaseBadge">例題</span>
-        </div>
-        <div class="microSteps" id="microSteps"></div>
-        <div class="supportMeter" id="supportMeter">分からなくても減点なし。ヒントは何回使ってもOKです。</div>
-      </section>
       <div class="feedback" id="feedback">問題に挑戦しよう。</div>
       <div class="assemblyExplain hidden" id="assemblyExplain"></div>
       <button class="btn nextInline hidden" id="nextQuestionInline">次の問題へ</button>
@@ -564,7 +554,7 @@ function showCelebrationAndReturn(){
  document.body.appendChild(overlay); soundFx.celebrate();
  setTimeout(()=>{ overlay.remove(); returnToClearedStage(); },2800);
 }
-let state={screen:'home',line:Number(localStorage.getItem('bunpoFactoryLine')||1),stage:0,q:0,selected:null,selectedFrom:null,placed:{S:[],V:[],O:[],C:[],H:[],MAIN:[],DESC:[]},build:[],buildPick:null,choice:null,stars:Number(localStorage.getItem(storeKey)||0),completed:loadCompleted(),doComicShown:false,attempts:0,hintLevel:0,returnStageId:null,trainer:null};
+let state={screen:'home',line:Number(localStorage.getItem('bunpoFactoryLine')||1),stage:0,q:0,selected:null,selectedFrom:null,placed:{S:[],V:[],O:[],C:[],H:[],MAIN:[],DESC:[]},build:[],buildPick:null,choice:null,stars:Number(localStorage.getItem(storeKey)||0),completed:loadCompleted(),doComicShown:false,trainer:null,attempts:0,hintLevel:0,returnStageId:null};
 function saveStars(){localStorage.setItem(storeKey,state.stars)}
 function saveCompleted(){localStorage.setItem(clearKey,JSON.stringify(state.completed||{}))}
 function currentStage(){return stages[state.stage]} function currentQ(){return currentStage().questions[state.q]}
@@ -580,10 +570,10 @@ function renderHome(){
  $$('.stageCard').forEach(b=>b.onclick=()=>openStage(Number(b.dataset.stage)));
  renderRoleGuide('#roleGrid');
  if(state.returnStageId!==null){
-   const targetId=state.returnStageId; state.returnStageId=null;
+   const id=state.returnStageId; state.returnStageId=null;
    requestAnimationFrame(()=>setTimeout(()=>{
-     const target=$('#stage-card-'+targetId) || $('#stageMap');
-     if(target){ target.classList?.add('returnFocus'); target.scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(()=>target.classList?.remove('returnFocus'),2600); }
+     const el=$('#stage-card-'+id)||$('#stageMap');
+     if(el){el.classList?.add('returnFocus');el.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>el.classList?.remove('returnFocus'),2300);}
    },120));
  }
 }
@@ -591,10 +581,10 @@ function renderRoleGuide(target){
  const el=$(target); if(!el) return;
  el.innerHTML=Object.entries({S:roles.S,V:roles.V,O:roles.O,C:roles.C}).map(([k,r])=>`<div class="role"><div class="bubble ${r.color}">${k}</div><div><b>${r.label}</b><span>${r.hint}</span></div></div>`).join('');
 }
-function openStage(id){state.screen='stage'; state.stage=id; state.line=currentStage()?.line||state.line; localStorage.setItem('bunpoFactoryLine',state.line); state.q=0; state.doComicShown=false; resetWork(); initBranchTrainer(id); renderStage(); window.scrollTo({top:0,behavior:'smooth'})}
-function backHome(){state.trainer=null; state.screen='home'; renderHome(); window.scrollTo({top:0,behavior:'smooth'})}
-function returnToClearedStage(){state.trainer=null; state.screen='home'; state.returnStageId=state.stage; renderHome();}
-function resetWork(){state.selected=null; state.selectedFrom=null; state.placed={S:[],V:[],O:[],C:[],H:[],MAIN:[],DESC:[]}; state.build=[]; state.buildPick=null; state.choice=null; state.attempts=0; state.hintLevel=0}
+function openStage(id){state.screen='stage'; state.stage=id; state.line=currentStage()?.line||state.line; localStorage.setItem('bunpoFactoryLine',state.line); state.q=0; state.doComicShown=false; resetWork(); initTrainer(id); renderStage(); window.scrollTo({top:0,behavior:'smooth'})}
+function backHome(){state.trainer=null;state.screen='home';renderHome();window.scrollTo({top:0,behavior:'smooth'})}
+function returnToClearedStage(){state.trainer=null;state.screen='home';state.returnStageId=state.stage;renderHome();}
+function resetWork(){state.selected=null;state.selectedFrom=null;state.placed={S:[],V:[],O:[],C:[],H:[],MAIN:[],DESC:[]};state.build=[];state.buildPick=null;state.choice=null;state.attempts=0;state.hintLevel=0}
 function renderStage(){
  $('#homeScreen').classList.add('hidden'); $('#stageScreen').classList.remove('hidden');
  renderRoleGuide('#roleGridStage');
@@ -603,23 +593,22 @@ function renderStage(){
  $('#progressBar').style.width=((state.q+1)/st.questions.length*100)+'%'; $('#qTag').textContent=`問題 ${state.q+1} / ${st.questions.length}`; $('#qMode').textContent=st.mode==='build'?'組み立て':(st.mode==='choice'?'選択':'仕分け');
  $('#questionBox')?.classList.remove('successMode'); $('#sentence').textContent=q.sentence; $('#trans').textContent=q.trans; $('#mobileHint').textContent='カードをタップ → 入れたい箱をタップ。置き直しもできます。'; $('#feedback').className='feedback'; $('#feedback').textContent='上の①から順に見れば大丈夫。まずは1枚だけ動かしてみよう。'; $('#assemblyExplain').classList.add('hidden'); $('#assemblyExplain').innerHTML=''; $('#nextQuestionInline').classList.add('hidden'); $('#nextQuestionInline').style.display=''; $('#nextQuestionInline').textContent='次の問題へ';
  renderLesson(q);
- renderStepCoach(st,q);
- renderBranchTrainer();
+ renderMiniCoach(st,q);
+ renderTrainer();
  const comicBtn=$('#doComicBtn'); if(comicBtn){ comicBtn.classList.toggle('hidden', st.id!==4); comicBtn.onclick=openDoComic; }
  if(st.id===4 && state.q===0 && !state.doComicShown){ state.doComicShown=true; setTimeout(openDoComic, 250); }
  if(st.mode==='build') renderBuild(); else if(st.mode==='choice') renderChoice(); else renderSort();
+ applyTrainerMode();
 }
 
-
-const trainerDecks={
+const trainerData={
   7:{
-    title:'be動詞・3分岐仕分けライン',
-    subtitle:'ベルトコンベアの主語カードを、am・are・is の搬入口へ運ぼう。',
-    rule:'主語を見て選びます。カードをつかんで運んでも、カードを選んでから搬入口をタップしてもOKです。',
+    title:'be動詞を3つの搬入口へ仕分けよう',
+    desc:'主語カードをつかんで運ぶか、カードをタップしてから搬入口をタップします。',
     gates:[
-      {id:'am',label:'am',sub:'Iだけの特別ライン',icon:'🔴'},
-      {id:'are',label:'are',sub:'you / we / they・複数',icon:'🔵'},
-      {id:'is',label:'is',sub:'he / she / it・1人・1つ',icon:'🟣'}
+      {id:'am',label:'am',hint:'Iだけ',img:()=>kobito[1]},
+      {id:'are',label:'are',hint:'you / we / they・複数',img:()=>kobito[0]},
+      {id:'is',label:'is',hint:'he / she / it・1人・1つ',img:()=>kobito[3]}
     ],
     cards:[
       {text:'I',meaning:'私は',answer:'am',example:'I am happy.'},
@@ -633,13 +622,12 @@ const trainerDecks={
     ]
   },
   8:{
-    title:'さみしがりやの三単現・2分岐ライン',
-    subtitle:'主語を見て、動詞を「原形のまま」か「sパーツ装着」へ運ぼう。',
-    rule:'合言葉は「Iとyou以外の、ひとり・ひとつにsをどうぞ！」。まず主語だけを見分けます。',
-    story:true,
+    title:'さみしがりやの三人称単数にsを届けよう',
+    desc:'主語を「原形のまま」と「sパーツ装着」の搬入口へ仕分けます。',
+    lonely:true,
     gates:[
-      {id:'base',label:'原形',sub:'I / you / we / they・複数',icon:'🔵'},
-      {id:'spart',label:'＋ s',sub:'he / she / it・名前1人・もの1つ',icon:'🟢'}
+      {id:'base',label:'原形',hint:'I / you / we / they・複数',img:()=>kobito[0]},
+      {id:'spart',label:'＋ s',hint:'he / she / it・名前1人・もの1つ',img:()=>kobito[2]}
     ],
     cards:[
       {text:'I',meaning:'私は',answer:'base',verb:'play',example:'I play soccer.'},
@@ -655,174 +643,126 @@ const trainerDecks={
     ]
   }
 };
-function initBranchTrainer(stageId){
- const deck=trainerDecks[stageId];
- state.trainer=deck?{stageId,index:0,correct:0,selected:false,done:false,wrong:0}:null;
+function initTrainer(id){
+ const d=trainerData[id];
+ state.trainer=d?{stage:id,index:0,selected:false,done:false}:null;
 }
-function trainerActive(){
- return !!(state.trainer && state.trainer.stageId===state.stage && !state.trainer.done);
-}
-function currentTrainerDeck(){return trainerDecks[state.stage]}
-function currentTrainerCard(){
- const d=currentTrainerDeck(); return d?.cards[state.trainer?.index||0];
-}
-function applyTrainerVisibility(){
+function trainerActive(){return !!(state.trainer&&state.trainer.stage===state.stage&&!state.trainer.done)}
+function applyTrainerMode(){
  const active=trainerActive();
- $('#branchTrainer')?.classList.toggle('hidden',!state.trainer);
- $('#lessonFlow')?.classList.toggle('hidden',active);
- $('#questionBox')?.classList.toggle('hidden',active);
+ $('#factoryTrainer')?.classList.toggle('hidden',!state.trainer);
+ $('#sortArea')?.classList.toggle('hidden',active||currentStage().mode!=='sort');
+ $('#buildArea')?.classList.toggle('hidden',active||currentStage().mode!=='build');
+ $('#choiceArea')?.classList.toggle('hidden',active||currentStage().mode!=='choice');
+ $('.actions')?.classList.toggle('hidden',active);
+ $('#feedback')?.classList.toggle('hidden',active);
+ $('#assemblyExplain')?.classList.toggle('hidden',active||$('#assemblyExplain').innerHTML==='');
+ $('#nextQuestionInline')?.classList.toggle('hidden',active||!$('#questionBox')?.classList.contains('successMode'));
 }
-function renderBranchTrainer(){
- const wrap=$('#branchTrainer'), body=$('#branchTrainerBody');
- if(!wrap||!body){return}
- const deck=currentTrainerDeck();
- if(!deck||!state.trainer){wrap.classList.add('hidden');return}
+function renderMiniCoach(st,q){
+ const el=$('#miniCoachSteps');if(!el)return;
+ const list=thinkingSteps(st);
+ el.innerHTML=list.map((x,i)=>`<span class="miniCoachStep"><i>${i+1}</i>${escapeHtml(x)}</span>`).join('');
+}
+function thinkingSteps(st){
+ const map={
+  0:['誰の話か探す','動き・説明を探す','残りを分ける'],
+  1:['主役を探す','＝で結べるか見る','be動詞を橋にする'],
+  2:['主役Sを探す','動きVを探す','相手Oを探す'],
+  3:['動きの相手ならO','＝の説明ならC','声に出して確認'],
+  4:['質問の合図を見る','中心Vを探す','お助けとVを分ける'],
+  5:['まずS＋V','OやCを足す','語順を検品'],
+  6:['空欄の場所を見る','誰の形か決める','表から選ぶ'],
+  7:['主語を見る','I/複数/1人を判定','am・are・isを選ぶ'],
+  8:['主語を見る','1人・1つか判定','必要ならsを装着'],
+  9:['動詞を探す','beか一般動詞か判定','疑問文の形を選ぶ'],
+  10:['何を聞くか決める','疑問詞を選ぶ','聞きたい部分と交換']
+ };
+ return map[st.id]||map[0];
+}
+function directAnswer(q){
+ if(currentStage().mode==='choice') return `正解は「${escapeHtml(q.answer)}」です。同じものを選び、もう一度検品しよう。`;
+ if(currentStage().mode==='build') return `正しい順番は「${escapeHtml(q.correct.join(' '))}」です。見ながら並べてOKです。`;
+ const parts=Object.entries(q.answers).filter(([,v])=>v&&v.length).map(([k,v])=>`${k}＝${v.join('・')}`);
+ return `答え：${escapeHtml(parts.join('／'))}`;
+}
+function renderTrainer(){
+ const wrap=$('#factoryTrainer');if(!wrap)return;
+ const d=trainerData[state.stage];
+ if(!d||!state.trainer){wrap.classList.add('hidden');wrap.innerHTML='';return}
  wrap.classList.remove('hidden');
  if(state.trainer.done){
-   body.innerHTML=`<div class="trainerComplete"><div class="big">🎉</div><b>主語センサー、検品OK！</b><p>仕分けで見分けられました。次は英文の空欄で使ってみよう。</p><button class="trainerBtn success" id="startQuestionsBtn">英文問題へ進む</button></div>`;
-   $('#startQuestionsBtn').onclick=()=>{
-     state.trainer=null;
-     renderStage();
-     setTimeout(()=>$('#lessonFlow')?.scrollIntoView({behavior:'smooth',block:'start'}),80);
-   };
+   wrap.innerHTML=`<div class="trainerCard trainerFinished"><div class="emoji">🎉</div><b>仕分けライン、検品OK！</b><div class="trainerDesc">次は、同じルールを英文の中で使ってみよう。</div><button class="btn primary" id="trainerNext">英文問題へ進む</button></div>`;
+   $('#trainerNext').onclick=()=>{state.trainer=null;renderStage();setTimeout(()=>$('#lessonFlow')?.scrollIntoView({behavior:'smooth',block:'start'}),80)};
    return;
  }
- const card=currentTrainerCard(), total=deck.cards.length, three=deck.gates.length===3;
- const story=deck.story?`<div class="lonelyStory">💭 <b>工場での覚え方</b><br>Iでもyouでもなく、ひとり・ひとつで立っている主語は「さみしがりや」。現在のふつうの文では、動詞に <b>sパーツ</b>をくっつけてあげます。<div class="lonelyCast"><span>he</span><span>she</span><span>it</span><span>Ken</span><span>my mother</span><span>this dog</span></div></div>`:'';
- body.innerHTML=`
-  <div class="trainerHead">
-    <div><h3>🏭 ${deck.title}</h3><p>${deck.subtitle}</p></div>
-    <span class="trainerCount">${state.trainer.index+1} / ${total}</span>
-  </div>
-  <div class="trainerRule">${deck.rule}</div>
-  ${story}
-  <div class="conveyorStage">
-    <div class="conveyorTopLabel">ベルトコンベアから主語が到着</div>
-    <div class="subjectCard ${state.trainer.selected?'selected':''}" id="trainerCard" draggable="true">
-      <div><div class="subjectMain">${escapeHtml(card.text)}</div><span class="subjectMeaning">${escapeHtml(card.meaning)}</span></div>
-    </div>
-    <div class="belt"></div>
-    <div class="branchStem"></div>
-    <div class="branchLines ${three?'three':'two'}">${three?'<i></i>':''}</div>
-    <div class="intakeGrid ${three?'three':'two'}">
-      ${deck.gates.map(g=>`<button class="intake ${g.id}" data-gate="${g.id}">
-        <span class="intakeIcon">${g.icon}</span><span class="intakeBig">${g.label}</span><span class="intakeSmall">${g.sub}</span>
-      </button>`).join('')}
-    </div>
-  </div>
-  <div class="trainerFeedback" id="trainerFeedback">カードを搬入口まで運ぶか、カードをタップしてから搬入口をタップしてください。</div>
-  ${state.stage===8?`<div class="trainerExample">今回の動詞：<b>${escapeHtml(card.verb)}</b>　→　どちらのライン？</div>`:''}
-  <div class="trainerActions">
-    <button class="trainerBtn secondary" id="trainerHintBtn">ヒント</button>
-    <button class="trainerBtn secondary" id="trainerSkipBtn">英文問題へ進む</button>
-  </div>`;
- bindTrainerInteractions();
+ const card=d.cards[state.trainer.index], cls=d.gates.length===3?'three':'two';
+ wrap.innerHTML=`<div class="trainerCard">
+   <div class="trainerTitle">🏭 ${d.title}</div>
+   <div class="trainerDesc">${d.desc}</div>
+   <div class="trainerCounter"><span class="trainerRule">${state.trainer.index+1} / ${d.cards.length}</span><span class="trainerRule">何回やり直してもOK</span></div>
+   ${d.lonely?`<div class="lonelyNote"><b>工場での覚え方：</b> Iでもyouでもなく、ひとり・ひとつで立っている主語は「さみしがりや」。現在のふつうの文では、動詞にsパーツを届けます。<br><b>本当のルール：</b> he / she / it / 名前1人 / もの1つ ＋ 現在の肯定文。</div>`:''}
+   <div class="subjectConveyor">
+     <div class="subjectArrival"><small>ベルトコンベアから主語が到着</small>
+       <button class="subjectPiece ${state.trainer.selected?'selected':''}" id="subjectPiece" draggable="true">${escapeHtml(card.text)}<span class="subjectMeaning">${escapeHtml(card.meaning)}</span></button>
+     </div>
+     <div class="conveyorMini"></div><div class="branchArrow">⌄</div>
+     <div class="trainerBins ${cls}">
+       ${d.gates.map(g=>`<button class="trainerBin" data-gate="${g.id}">
+         <div class="trainerBinLabel">${escapeHtml(g.label)}</div>
+         <img src="${g.img()}" alt="${escapeHtml(g.label)}担当小人">
+         <div class="trainerDrop">${escapeHtml(g.hint)}<br>ここに入れる</div>
+       </button>`).join('')}
+     </div>
+   </div>
+   ${state.stage===8?`<div class="trainerFeedback">今回の動詞は <b>${escapeHtml(card.verb)}</b>。主語を見て、どちらの工場へ送るか決めよう。</div>`:`<div class="trainerFeedback">主語カードを運ぶか、カードを選んでから搬入口をタップしよう。</div>`}
+   <div class="trainerButtons"><button class="btn secondary" id="trainerHint">ヒント</button><button class="btn secondary" id="trainerSkip">英文問題へ</button></div>
+ </div>`;
+ bindTrainer();
 }
-function bindTrainerInteractions(){
- const cardEl=$('#trainerCard');
- if(!cardEl)return;
- cardEl.onclick=()=>{state.trainer.selected=!state.trainer.selected; renderBranchTrainer()};
- cardEl.ondragstart=e=>{cardEl.classList.add('dragging');e.dataTransfer.setData('text/plain','subject')};
- cardEl.ondragend=()=>cardEl.classList.remove('dragging');
- $$('.intake').forEach(g=>{
-   g.onclick=()=>{
-     if(!state.trainer.selected){
-       state.trainer.selected=true;
-       $('#trainerFeedback').className='trainerFeedback';
-       $('#trainerFeedback').textContent='主語カードを選びました。もう一度、入れたい搬入口をタップしよう。';
-       cardEl.classList.add('selected');
-       return;
-     }
-     submitTrainerGate(g.dataset.gate);
+function bindTrainer(){
+ const piece=$('#subjectPiece');if(!piece)return;
+ piece.onclick=()=>{state.trainer.selected=!state.trainer.selected;renderTrainer()};
+ piece.ondragstart=e=>{piece.classList.add('dragging');e.dataTransfer.setData('text/plain','subject')};
+ piece.ondragend=()=>piece.classList.remove('dragging');
+ $$('.trainerBin').forEach(bin=>{
+   bin.onclick=()=>{
+     if(!state.trainer.selected){state.trainer.selected=true;piece.classList.add('selected');const f=$('.trainerFeedback');f.textContent='カードを選びました。入れたい搬入口をもう一度タップしよう。';return}
+     submitTrainer(bin.dataset.gate);
    };
-   g.ondragover=e=>{e.preventDefault();g.classList.add('hover')};
-   g.ondragleave=()=>g.classList.remove('hover');
-   g.ondrop=e=>{e.preventDefault();g.classList.remove('hover');submitTrainerGate(g.dataset.gate)};
+   bin.ondragover=e=>{e.preventDefault();bin.classList.add('hover')};
+   bin.ondragleave=()=>bin.classList.remove('hover');
+   bin.ondrop=e=>{e.preventDefault();bin.classList.remove('hover');submitTrainer(bin.dataset.gate)};
  });
- $('#trainerHintBtn').onclick=showTrainerHint;
- $('#trainerSkipBtn').onclick=()=>{
-   state.trainer=null; renderStage();
-   setTimeout(()=>$('#lessonFlow')?.scrollIntoView({behavior:'smooth',block:'start'}),80);
- };
+ $('#trainerHint').onclick=trainerHint;
+ $('#trainerSkip').onclick=()=>{state.trainer=null;renderStage()};
 }
-function submitTrainerGate(gate){
- const card=currentTrainerCard(), fb=$('#trainerFeedback');
+function submitTrainer(gate){
+ const d=trainerData[state.stage],card=d.cards[state.trainer.index],f=$('.trainerFeedback');
  if(gate===card.answer){
-   soundFx.correct();
-   fb.className='trainerFeedback ok';
-   let reason='';
-   if(state.stage===7){
-     reason=gate==='am'?'Iだけは am！':gate==='are'?'you / we / they・複数は are！':'he / she / it・1人・1つは is！';
-   }else{
-     reason=gate==='spart'?'ひとり・ひとつだから、sパーツをどうぞ！':'I / you / we / they・複数だから、原形のまま！';
-   }
-   fb.innerHTML=`検品OK！ ${reason}<div class="trainerExample">${escapeHtml(card.example)}</div>`;
-   state.trainer.correct++; state.trainer.selected=false;
-   setTimeout(()=>{
-     state.trainer.index++;
-     if(state.trainer.index>=currentTrainerDeck().cards.length) state.trainer.done=true;
-     renderBranchTrainer();
-   },1050);
+   soundFx.correct();f.className='trainerFeedback ok';
+   const why=state.stage===7
+    ?(gate==='am'?'Iだけはam！':gate==='are'?'you / we / they・複数はare！':'he / she / it・1人・1つはis！')
+    :(gate==='spart'?'ひとり・ひとつだから、sパーツをどうぞ！':'I / you / we / they・複数だから、原形のまま！');
+   f.innerHTML=`検品OK！ ${why}<br><b>${escapeHtml(card.example)}</b>`;
+   state.trainer.selected=false;
+   setTimeout(()=>{state.trainer.index++;if(state.trainer.index>=d.cards.length)state.trainer.done=true;renderTrainer()},1050);
  }else{
-   soundFx.wrong(); state.trainer.wrong++;
-   fb.className='trainerFeedback ng';
-   if(state.stage===7){
-     fb.innerHTML=`もう一度だけ主語を見よう。<br><b>I → am</b>／<b>you・we・they・複数 → are</b>／<b>1人・1つ → is</b>`;
-   }else{
-     fb.innerHTML=`まだ大丈夫。<br><b>I・you・we・they・複数</b>は原形。<b>he・she・it・名前1人・もの1つ</b>にはsパーツです。`;
-   }
+   soundFx.wrong();f.className='trainerFeedback ng';
+   f.innerHTML=state.stage===7
+    ?'もう一度、主語だけ見よう。<br>I→am／you・we・they・複数→are／1人・1つ→is'
+    :'もう一度、主語だけ見よう。<br>I・you・we・they・複数→原形／he・she・it・1人・1つ→＋s';
    state.trainer.selected=true;
  }
 }
-function showTrainerHint(){
- const card=currentTrainerCard(), fb=$('#trainerFeedback');
- fb.className='trainerFeedback';
- if(state.stage===7){
-   const hints={am:'この主語は I。Iだけの特別ラインです。',are:'この主語は you / we / they、または複数です。',is:'この主語は he / she / it、または1人・1つです。'};
-   fb.innerHTML=`ヒント：${hints[card.answer]}<br>答えは <b>${card.answer}</b> の搬入口です。`;
- }else{
-   fb.innerHTML=card.answer==='spart'
-    ?'ヒント：Iでもyouでもなく、ひとり・ひとつです。<b>＋s</b>へ運ぼう。'
-    :'ヒント：I / you / we / they、または複数です。<b>原形</b>へ運ぼう。';
- }
- state.trainer.selected=true; $('#trainerCard')?.classList.add('selected');
-}
-
-function learningPhase(){
- const total=currentStage().questions.length;
- if(state.q===0) return {name:'① 例題',desc:'見本を見ながら、同じ形をまねします。'};
- if(state.q===total-1) return {name:'③ ひとりで',desc:'最後は自分の力で検品します。ヒントを使っても合格です。'};
- return {name:'② まねっこ練習',desc:'さっきと少しだけ違う文を、同じ考え方で解きます。'};
-}
-function stageThinkingSteps(st,q){
- const common={
-  0:[['誰の話？','文の中で、いちばん主役になっている言葉を探します。'],['どうした・どんな？','動き、または主役の説明を探します。'],['残った言葉は？','動きの相手や、くわしい説明として分けます。']],
-  1:[['主役を探す','「だれが・なにが」に当たる言葉を見ます。'],['＝で結べる？','主役と後ろの説明が同じもの・同じ状態か確かめます。'],['be動詞を橋にする','am / is / are は、主役と説明をつなぐVです。']],
-  2:[['主役を探す','「だれが・なにが」をSにします。'],['動きを探す','「どうする」に当たる一般動詞をVにします。'],['動きの相手を探す','「なにを・だれを」に当たる言葉をOにします。']],
-  3:[['動きの相手？','動詞の相手ならOです。'],['＝で結べる？','SまたはOと同じもの・状態ならCです。'],['声に出して確認','「OはCです」と言えるなら、Cの可能性が高いです。']],
-  4:[['質問の合図を見る','文頭のDo / Does / Did / be動詞を見つけます。'],['中心のVを探す','本当の動き・状態を表す中心の動詞を探します。'],['お助けと中心を分ける','Do類はお助けパーツ。中心Vとは別の箱です。']],
-  5:[['まずSとV','最短の「だれが＋どうする」を作ります。'],['OやCを足す','「なにを」「どんな状態」を後ろへ足します。'],['最後に形を確認','大文字・語順・疑問文の合図を確認します。']],
-  6:[['空欄の場所を見る','主役・名詞の前・動きの相手・ひとりで、のどこかを確認します。'],['意味を決める','「私・あなた・彼・彼女・私たち・彼ら」の誰かを確認します。'],['表から形を選ぶ','場所と意味が交わる形を選びます。']],
-  7:[['主語を見る','I / you / 複数 / 1人・1つのどれかを確認します。'],['合言葉を使う','I→am、you/we/they→are、1人・1つ→is。'],['文全体を読む','選んだbe動詞で自然な文になるか読みます。']],
-  8:[['主語センサー','he / she / it / 名前1人 / もの1つか確認します。'],['現在のふつうの文？','疑問文・否定文ではなく、現在の肯定文か確認します。'],['sパーツ装着','条件がそろったら一般動詞にsをつけます。']],
-  9:[['動詞を探す','am/is/areか、動きを表す一般動詞かを探します。'],['エンジンを判定','be動詞エンジンか一般動詞エンジンか決めます。'],['疑問文の作り方へ','beは前へ、一般動詞にはDo/Doesを呼びます。']],
-  10:[['何を知りたい？','もの・人・場所・時のどれを質問したいか考えます。'],['疑問詞を選ぶ','What / Who / Where / Whenから選びます。'],['聞きたい部分と交換','答えになる部分を疑問詞に置き換え、前に出します。']]
- };
- return common[st.id] || common[0];
-}
-function renderStepCoach(st,q){
- const phase=learningPhase();
- const badge=$('#phaseBadge'), steps=$('#microSteps'), meter=$('#supportMeter');
- if(badge) badge.textContent=phase.name;
- const data=stageThinkingSteps(st,q);
- if(steps) steps.innerHTML=data.map((x,i)=>`<div class="microStep"><div class="microNo">${i+1}</div><div class="microText"><b>${escapeHtml(x[0])}</b><span>${escapeHtml(x[1])}</span></div></div>`).join('');
- if(meter) meter.innerHTML=`${escapeHtml(phase.desc)}<br>分からなくても減点なし。ヒントは何回使ってもOKです。`;
-}
-function explicitAnswerText(q){
- if(currentStage().mode==='choice') return `正解は「${q.answer}」です。いったん同じものを選んで、形を目と手で覚えよう。`;
- if(currentStage().mode==='build') return `正しい順番は「${q.answer.join(' ')}」です。見ながら同じ順に並べてOKです。`;
- const parts=Object.entries(q.answers).filter(([,v])=>v&&v.length).map(([k,v])=>`${k}＝${v.join('・')}`);
- return `答えを見ながらでOK：${parts.join('／')}。同じ場所に入れて、もう一度「検品する」を押そう。`;
+function trainerHint(){
+ const d=trainerData[state.stage],card=d.cards[state.trainer.index],f=$('.trainerFeedback');
+ f.className='trainerFeedback';
+ if(state.stage===7) f.innerHTML=`答えは <b>${escapeHtml(card.answer)}</b>。主語の人数と種類を見よう。`;
+ else f.innerHTML=card.answer==='spart'
+   ?'Iでもyouでもなく、ひとり・ひとつです。<b>＋s</b>へ送ろう。'
+   :'I / you / we / they、または複数です。<b>原形</b>へ送ろう。';
+ state.trainer.selected=true;$('#subjectPiece')?.classList.add('selected');
 }
 
 function renderLesson(q){
@@ -1130,18 +1070,13 @@ function success(msg){
  setTimeout(()=>f.scrollIntoView({behavior:'smooth',block:'center'}),80);
 }
 function fail(msg){
- soundFx.wrong(); state.attempts=(state.attempts||0)+1;
- const f=$('#feedback'); $('#questionBox')?.classList.remove('successMode'); f.className='feedback ng';
- if(state.attempts===1){
-   f.innerHTML='まだ途中で大丈夫。<br>'+msg+'<br><b>まず上の①だけ</b>確認してみよう。';
- }else if(state.attempts===2){
-   f.innerHTML='あと一歩。間違いではなく、見分ける練習中です。<br>'+ (currentQ().note||msg);
- }else{
-   f.innerHTML='答えを見ながら完成させてOK！<br>'+explicitAnswerText(currentQ());
- }
- $('#supportMeter').innerHTML=`挑戦 ${state.attempts}回目。何回やり直してもスターは減りません。`;
- $('#assemblyExplain').classList.add('hidden'); $('#assemblyExplain').innerHTML='';
- $('#nextQuestionInline').classList.add('hidden'); $('#nextQuestionInline').style.display='';
+ soundFx.wrong();state.attempts=(state.attempts||0)+1;
+ const f=$('#feedback');$('#questionBox')?.classList.remove('successMode');f.className='feedback ng';
+ if(state.attempts===1) f.innerHTML='まだ途中で大丈夫。<br>'+msg+'<br><b>上の手順①だけ</b>見てみよう。';
+ else if(state.attempts===2) f.innerHTML='あと一歩。<br>'+(currentQ().note||msg);
+ else f.innerHTML='答えを見ながら完成させてOK。<br>'+directAnswer(currentQ());
+ $('#assemblyExplain').classList.add('hidden');$('#assemblyExplain').innerHTML='';
+ $('#nextQuestionInline').classList.add('hidden');$('#nextQuestionInline').style.display='';
 }
 function renderAssemblyExplain(q){
  const box=$('#assemblyExplain'); const steps=getAssemblySteps(q);
@@ -1165,16 +1100,11 @@ function scrollToProblem(){ setTimeout(()=>{ const target=$('#questionBox') || $
 function nextQ(){ if(state.q >= currentStage().questions.length-1){ returnToClearedStage(); return; } state.q=state.q+1; resetWork(); renderStage(); scrollToProblem(); }
 function clearWork(){resetWork(); renderStage();}
 function showHint(){
- const q=currentQ(), f=$('#feedback'); state.hintLevel=(state.hintLevel||0)+1; f.className='feedback';
- const steps=stageThinkingSteps(currentStage(),q);
- if(state.hintLevel===1){
-   f.innerHTML=`ヒント①：<b>${escapeHtml(steps[0][0])}</b><br>${escapeHtml(steps[0][1])}`;
- }else if(state.hintLevel===2){
-   f.innerHTML=`ヒント②：${escapeHtml(q.note || steps[1][1])}`;
- }else{
-   f.innerHTML=`ヒント③：${escapeHtml(explicitAnswerText(q))}`;
- }
- $('#supportMeter').innerHTML=`ヒント ${Math.min(state.hintLevel,3)} / 3。見ながら解いても、きちんと学習になっています。`;
+ const q=currentQ(),f=$('#feedback');state.hintLevel=(state.hintLevel||0)+1;f.className='feedback';
+ const steps=thinkingSteps(currentStage());
+ if(state.hintLevel===1) f.innerHTML=`ヒント①：<b>${steps[0]}</b>`;
+ else if(state.hintLevel===2) f.innerHTML=`ヒント②：${q.note||steps[1]}`;
+ else f.innerHTML=`ヒント③：${directAnswer(q)}`;
 }
 
 function openDoComic(){ const m=$('#doComicModal'); const img=$('#doComicImg'); if(!m||!img) return; if(!img.src) img.src=doComicImage; m.classList.remove('hidden'); m.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
