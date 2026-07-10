@@ -47,6 +47,87 @@ button{font:inherit}button:focus-visible,[tabindex]:focus-visible{outline:4px so
 .level.return-focus{animation:returnFocus 1s ease 2;box-shadow:0 0 0 7px rgba(255,211,78,.32),0 7px 18px rgba(33,70,100,.07)}@keyframes returnFocus{50%{transform:translateY(-4px) scale(1.015)}}
 @media(max-width:650px){.step-list{grid-template-columns:1fr}.step-item{min-height:auto}.intakes{gap:6px}.intake{min-height:135px;padding:8px 3px}.intake img{height:51px;width:48px}.intake .gate-label{font-size:20px}.intake .gate-help{font-size:9px}.subject-part .main{font-size:26px}}
 
+
+/* ===== 問題導線の視認性修正（全問題共通） ===== */
+#questionBox{scroll-margin-top:104px}
+.question-intro{margin-top:12px}
+.jp{
+  font-size:clamp(20px,4.8vw,28px)!important;
+  color:#294b65!important;
+  font-weight:1000!important;
+  line-height:1.55!important;
+  margin:14px 0 10px!important;
+  padding:12px 14px;
+  background:#eef7ff;
+  border-left:7px solid var(--blue);
+  border-radius:12px
+}
+.sentence{margin-top:10px!important}
+.step-coach{
+  margin:12px 0 14px!important;
+  padding:14px 15px!important;
+  border:1.5px solid #c9e0f2!important;
+  border-radius:18px!important;
+  background:linear-gradient(180deg,#f4faff,#fff)!important
+}
+.step-coach-head strong{font-size:17px!important;color:#17324d}
+.step-list{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.step-item{
+  display:grid!important;
+  grid-template-columns:34px 1fr!important;
+  column-gap:9px!important;
+  align-items:start!important;
+  min-height:92px!important;
+  padding:11px!important
+}
+.step-item b{
+  display:contents!important;
+  font-size:13px!important
+}
+.step-num{
+  grid-column:1!important;
+  grid-row:1 / span 2!important;
+  width:30px!important;
+  height:30px!important;
+  min-width:30px!important;
+  border-radius:50%!important;
+  display:grid!important;
+  place-items:center!important;
+  background:#1675d1!important;
+  color:#fff!important;
+  font-size:14px!important;
+  font-weight:1000!important;
+  line-height:1!important;
+  opacity:1!important;
+  text-indent:0!important;
+  overflow:visible!important
+}
+.step-item b > :not(.step-num){grid-column:2}
+.step-item span:not(.step-num){
+  grid-column:2!important;
+  display:block!important;
+  margin-top:3px!important;
+  color:#5d7487!important;
+  font-size:12px!important;
+  line-height:1.5!important
+}
+.prompt-label{
+  font-size:13px!important;
+  padding:7px 11px!important;
+  letter-spacing:.03em
+}
+.next-question-anchor{height:1px;scroll-margin-top:104px}
+@media(max-width:650px){
+  .step-list{grid-template-columns:1fr!important}
+  .step-item{min-height:auto!important}
+  .jp{font-size:20px!important}
+}
+
+
+.step-item>div{grid-column:2}
+.step-item>div b{display:block!important;font-size:13px!important;color:#17324d!important}
+.step-item>div span{display:block!important;margin-top:3px!important;color:#5d7487!important;font-size:12px!important;line-height:1.5!important}
+
 </style>
 </head>
 <body>
@@ -75,12 +156,13 @@ button{font:inherit}button:focus-visible,[tabindex]:focus-visible{outline:4px so
 <section id="game" class="game">
  <div class="panel game-head"><button class="back" id="backBtn">← 工場へ</button><div class="stage-meta"><small id="stageLine">LINE</small><h2 id="stageTitle"></h2></div><div class="counter" id="counter"></div></div>
  <div class="panel lesson"><div class="lesson-grid"><div><h3 id="lessonTitle"></h3><p id="lessonText"></p><div class="mini-rule" id="miniRule"></div></div><img id="workerImg" src="assets/1.png" alt="担当作業員"></div></div>
- <div class="panel question" id="questionBox"><span class="prompt-label" id="promptLabel">検品問題</span><div class="jp" id="jp"></div><div class="sentence" id="sentence"></div>
+ <div class="panel question" id="questionBox"><div class="next-question-anchor" id="questionTop"></div><span class="prompt-label" id="promptLabel">検品問題</span>
 <div class="step-coach" id="stepCoach">
-  <div class="step-coach-head"><strong>🧩 今日はここだけ見よう</strong><span class="step-chip" id="stepPhase">例題</span></div>
+  <div class="step-coach-head"><strong>✅ チェックポイント！</strong><span class="step-chip" id="stepPhase">例題</span></div>
   <div class="step-list" id="stepList"></div>
   <div class="worker-note"><img id="coachWorker" src="assets/1.png" alt=""><span id="coachMessage">小人と一緒に、ひとつずつ確認します。</span></div>
 </div>
+<div class="question-intro"><div class="jp" id="jp"></div><div class="sentence" id="sentence"></div></div>
 <div id="interaction"></div><div class="actions"><button class="reset" id="retryBtn">選び直す</button><button class="check" id="checkBtn">検品する</button></div><div class="feedback" id="feedback"></div><button class="next" id="nextBtn">次の問題へ →</button></div>
 </section>
 </div>
@@ -165,16 +247,16 @@ const $=s=>document.querySelector(s);
 function save(){localStorage.setItem('bunpoFactory',JSON.stringify({progress,attempts:state.attempts,correct:state.correct,sound:state.sound}))}
 function renderLevels(){const groups=[['basic','部品発見ライン','基礎：Lv.0〜5'],['change','形チェンジ工場','変化：Lv.6〜10'],['exam','入試解析ライン','応用：Lv.11〜15']];$('#levelMount').innerHTML=groups.map(([g,t,sub])=>`<div class="section-title" id="${g}"><div><h3>${t}</h3><p>${sub}</p></div></div><section class="levels">${levels.filter(x=>x.group===g).map(l=>{const p=progress[l.id];return `<button class="level" id="level-${l.id}" data-level="${l.id}"><span class="lv">Lv.${l.id}</span>${p?'<span class="ok">検品OK</span>':''}<h5>${l.title}</h5><p>${l.desc}</p><span class="stars">${p?'★★★':'☆☆☆'}</span></button>`}).join('')}</section>`).join('');document.querySelectorAll('[data-level]').forEach(b=>b.onclick=()=>openLevel(+b.dataset.level));updateDashboard();if(state.returnLevel!==null){const id=state.returnLevel;state.returnLevel=null;requestAnimationFrame(()=>setTimeout(()=>{const el=$('#level-'+id);if(el){el.classList.add('return-focus');el.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>el.classList.remove('return-focus'),2400)}},120))}}
 function updateDashboard(){const done=Object.keys(progress).length,total=levels.length,pct=Math.round(done/total*100);$('#progressBar').style.width=pct+'%';$('#doneStat').textContent=`検品OK ${done} / ${total}`;$('#starStat').textContent=`★ ${done*3}`;$('#accuracyStat').textContent=`正答率 ${state.attempts?Math.round(state.correct/state.attempts*100)+'%':'--'}`;$('#rank').textContent=done===16?'文法工場長':done>=12?'入試ライン主任':done>=7?'熟練作業員':done>=3?'若手作業員':'見習い作業員'}
-function openLevel(id){state.level=id;state.q=0;state.branchIndex=0;state.branchSelected=false;state.branchDone=false;$('#home').classList.add('hidden');$('#game').classList.add('active');const l=levels[id];$('#stageLine').textContent=l.line;$('#stageTitle').textContent=`Lv.${id} ${l.title}`;$('#lessonTitle').textContent=l.desc;$('#lessonText').textContent=l.lesson;$('#workerImg').src=`assets/${l.worker}.png`;$('#miniRule').innerHTML=l.rule.map(([a,b])=>`<span class="badge ${COLORS[b]||'h'}">${a}：${b}</span>`).join('');if(l.comic&&!progress['comicSeen']){progress.comicSeen=true;save();$('#comicModal').classList.add('show')}renderQuestion();window.scrollTo({top:0,behavior:'smooth'})}
+function openLevel(id){state.level=id;state.q=0;state.branchIndex=0;state.branchSelected=false;state.branchDone=false;$('#home').classList.add('hidden');$('#game').classList.add('active');const l=levels[id];$('#stageLine').textContent=l.line;$('#stageTitle').textContent=`Lv.${id} ${l.title}`;$('#lessonTitle').textContent=l.desc;$('#lessonText').textContent=l.lesson;$('#workerImg').src=`assets/${l.worker}.png`;$('#miniRule').innerHTML=l.rule.map(([a,b])=>`<span class="badge ${COLORS[b]||'h'}">${a}：${b}</span>`).join('');if(l.comic&&!progress['comicSeen']){progress.comicSeen=true;save();$('#comicModal').classList.add('show')}renderQuestion();scrollToQuestionTop()}
 
 function phaseInfo(){const total=levels[state.level].qs.length;if(state.q===0)return ['① 見本','まずは見ながら、同じ考え方をまねします。'];if(state.q===total-1)return ['③ ひとりで','最後は自分で検品。ヒントを使っても合格です。'];return ['② まねっこ','さっきと少しだけ違う文で練習します。']}
 function coachSteps(q){if(q.type==='branch'&&q.kind==='be')return [['主語だけを見る','文の残りはまだ見なくてOK。'],['仲間を決める','I／you・we・they・複数／1人・1つ。'],['搬入口へ運ぶ','am・are・isのどれかへ。']];if(q.type==='branch'&&q.kind==='s')return [['主語だけを見る','動詞はまだ変えなくてOK。'],['ひとり・ひとつ？','he・she・it・名前1人・もの1つを探す。'],['sをどうぞ','さみしがりやなら＋sへ。']];if(q.type==='label')return [['中心のV','まず動詞だけ探します。'],['だれが？','Vの主役をSにします。'],['相手か説明か','動きの相手はO、＝の説明はC。']];if(q.type==='order')return [['主役S','だれが・なにがを最初に。'],['中心V','次に動き・状態を置きます。'],['残りの部品','O・C・お助けを順に足します。']];return [['空欄の役割','S・V・O・Cのどこか確認。'],['主語を見る','形が変わる問題は主語が合図。'],['選んで読む','文全体を声に出して確認。']]}
-function renderCoach(q){const [phase,msg]=phaseInfo();$('#stepPhase').textContent=phase;$('#stepList').innerHTML=coachSteps(q).map((x,i)=>`<div class="step-item"><b><span class="step-num">${i+1}</span>${x[0]}</b><span>${x[1]}</span></div>`).join('');$('#coachWorker').src=`assets/${levels[state.level].worker}.png`;$('#coachMessage').textContent=msg+' 分からないときは、答えを見ながら同じ形にして大丈夫です。'}
+function renderCoach(q){const [phase,msg]=phaseInfo();$('#stepPhase').textContent=phase;$('#stepList').innerHTML=coachSteps(q).map((x,i)=>`<div class="step-item"><span class="step-num">${i+1}</span><div><b>${x[0]}</b><span>${x[1]}</span></div></div>`).join('');$('#coachWorker').src=`assets/${levels[state.level].worker}.png`;$('#coachMessage').textContent=msg+' 分からないときは、答えを見ながら同じ形にして大丈夫です。'}
 function branchGates(q){if(q.kind==='be')return [{id:'am',label:'am',help:'Iだけ',img:2},{id:'are',label:'are',help:'you / we / they・複数',img:1},{id:'is',label:'is',help:'he / she / it・1人・1つ',img:4}];return [{id:'base',label:'原形',help:'I / you / we / they・複数',img:1},{id:'spart',label:'＋ s',help:'he / she / it・名前1人・もの1つ',img:2}]}
 function renderBranch(q){const i=$('#interaction'),card=q.cards[state.branchIndex],gates=branchGates(q),three=gates.length===3;if(state.branchDone){i.innerHTML=`<div class="branch-complete"><div class="big">🎉</div><h3>仕分けライン、検品OK！</h3><p>${q.ex}<br>次は、同じ考え方を英文の空欄で使います。</p><button class="branch-next" id="branchNextBtn">英文問題へ進む →</button></div>`;$('#branchNextBtn').onclick=()=>{$('#nextBtn').click()};return}const story=q.kind==='s'?`<div class="lonely-box"><strong>工場での覚え方：さみしがりやの三人称単数</strong><br>Iでもyouでもなく、ひとり・ひとつで立っている主語には、現在のふつうの文で動詞にsパーツをつけます。<div class="lonely-tags"><span>he</span><span>she</span><span>it</span><span>Ken</span><span>my mother</span><span>this dog</span></div></div>`:'';i.innerHTML=`<div class="branch-game">${story}<div class="branch-progress"><strong>仕分け ${state.branchIndex+1} / ${q.cards.length}</strong><span class="branch-dots">${q.cards.map((_,n)=>`<i class="${n<state.branchIndex?'done':n===state.branchIndex?'now':''}"></i>`).join('')}</span></div><p class="branch-guide">カードをつかんで搬入口へ運ぶか、カードをタップしてから搬入口をタップしてください。</p><div class="branch-machine"><div class="branch-arrival">ベルトコンベアから主語が到着</div><button class="subject-part ${state.branchSelected?'selected':''}" id="subjectPart" draggable="true"><span class="main">${card.text}</span><small>${card.meaning}</small></button><div class="mini-belt"></div><div class="branch-neck"></div><div class="branch-path ${three?'three':'two'}">${three?'<i></i>':''}</div><div class="intakes ${three?'three':'two'}">${gates.map(g=>`<button class="intake ${g.id}" data-gate="${g.id}"><span class="gate-label">${g.label}</span><img src="assets/${g.img}.png" alt=""><span class="gate-help">${g.help}</span></button>`).join('')}</div></div>${q.kind==='s'?`<div class="branch-example">今回の動詞：<strong>${card.verb}</strong>　→　どちらのライン？</div>`:''}<div class="branch-feedback" id="branchFeedback">まず主語カードを1枚だけ仕分けしよう。</div></div>`;const part=$('#subjectPart');part.onclick=()=>{state.branchSelected=!state.branchSelected;part.classList.toggle('selected',state.branchSelected)};part.ondragstart=e=>{part.classList.add('dragging');e.dataTransfer.setData('text/plain','subject')};part.ondragend=()=>part.classList.remove('dragging');document.querySelectorAll('[data-gate]').forEach(g=>{g.onclick=()=>{if(!state.branchSelected){state.branchSelected=true;part.classList.add('selected');$('#branchFeedback').textContent='主語カードを選びました。次に搬入口をタップしよう。';return}judgeBranch(q,g.dataset.gate)};g.ondragover=e=>{e.preventDefault();g.classList.add('drop-over')};g.ondragleave=()=>g.classList.remove('drop-over');g.ondrop=e=>{e.preventDefault();g.classList.remove('drop-over');judgeBranch(q,g.dataset.gate)}})}
 function judgeBranch(q,gate){const card=q.cards[state.branchIndex],f=$('#branchFeedback');if(gate===card.answer){playCorrect();f.className='branch-feedback good';let reason=q.kind==='be'?(gate==='am'?'Iだけはam！':gate==='are'?'you・we・they・複数はare！':'1人・1つはis！'):(gate==='spart'?'ひとり・ひとつだから、sパーツをどうぞ！':'I・you・we・they・複数だから、原形のまま！');f.innerHTML=`✅ 検品OK！ ${reason}<div class="branch-example">${card.example}</div>`;state.branchSelected=false;setTimeout(()=>{state.branchIndex++;if(state.branchIndex>=q.cards.length){state.branchDone=true;$('#nextBtn').classList.add('show');$('#checkBtn').disabled=true}renderQuestion()},950)}else{playWrong();f.className='branch-feedback bad';f.innerHTML=q.kind==='be'?'🔧 主語だけ見よう。I→am、you・we・they・複数→are、1人・1つ→is。':'🔧 I・you・we・they・複数は原形。he・she・it・名前1人・もの1つは＋s。';state.branchSelected=true;$('#subjectPart')?.classList.add('selected')}}
 
-function renderQuestion(){state.selected=null;state.order=[];state.labelChoices=[];const l=levels[state.level],q=l.qs[state.q];$('#counter').textContent=`${state.q+1} / ${l.qs.length}`;$('#jp').textContent=q.jp||'';$('#sentence').innerHTML=q.html?q.sentence:(q.sentence||'部品を正しく検品しよう');$('#feedback').className='feedback';$('#feedback').innerHTML='';$('#nextBtn').classList.remove('show');$('#checkBtn').disabled=false;renderCoach(q);const i=$('#interaction');$('.actions').style.display='flex';
+function renderQuestion(){state.selected=null;state.order=[];state.labelChoices=[];const l=levels[state.level],q=l.qs[state.q];$('#counter').textContent=`${state.q+1} / ${l.qs.length}`;$('#jp').textContent=q.jp||'次の英文を、工場の部品として正しく検品しよう。';$('#sentence').innerHTML=q.html?q.sentence:(q.sentence||'部品を正しく検品しよう');$('#feedback').className='feedback';$('#feedback').innerHTML='';$('#nextBtn').classList.remove('show');$('#checkBtn').disabled=false;renderCoach(q);const i=$('#interaction');$('.actions').style.display='flex';
  if(q.type==='branch'){renderBranch(q);$('.actions').style.display='none';if(state.branchDone)$('#nextBtn').classList.add('show');return}
  if(q.type==='choice'){i.innerHTML=`<div class="options">${q.opts.map(o=>`<button class="choice" data-choice="${esc(o)}">${o}</button>`).join('')}</div>`;i.querySelectorAll('.choice').forEach(b=>b.onclick=()=>{i.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');state.selected=b.dataset.choice})}
  if(q.type==='order'){i.innerHTML=`<p class="sort-label">上の部品置き場に、順番にタップして送ろう。置いた部品はタップで戻せます。</p><div class="answer-zone" id="answerZone">ここに組み立て</div><div class="options">${q.tokens.map((o,n)=>`<button class="choice" data-token="${n}">${o}</button>`).join('')}</div>`;bindOrder(q)}
@@ -184,7 +266,19 @@ function bindOrder(q){const i=$('#interaction'),zone=i.querySelector('#answerZon
 function check(){const q=levels[state.level].qs[state.q];if(q.type==='branch')return;let ok=false;if(q.type==='choice')ok=state.selected===q.ans;if(q.type==='order')ok=JSON.stringify(state.order.map(n=>q.tokens[n]))===JSON.stringify(q.ans);if(q.type==='label')ok=JSON.stringify(state.labelChoices)===JSON.stringify(q.labels);state.attempts++;q._tries=(q._tries||0)+1;if(ok)state.correct++;save();const f=$('#feedback');f.classList.add('show',ok?'good':'bad');if(ok){f.innerHTML=`✅ <strong>出荷OK！</strong><br>${q.ex}`;playCorrect();$('#nextBtn').classList.add('show');$('#checkBtn').disabled=true;setTimeout(()=>$('#nextBtn').scrollIntoView({behavior:'smooth',block:'center'}),120)}else{let extra=q._tries>=3?`<br><strong>答えを見ながら同じ形にしてOKです。</strong><br>${answerGuide(q)}`:q._tries===2?`<br>${q.ex||''}`:'';f.innerHTML=`🔧 <strong>まだ途中で大丈夫。</strong><br>${hint(q)}${extra}`;playWrong()}updateDashboard()}
 function answerGuide(q){if(q.type==='choice')return `正解は「${q.ans}」です。`;if(q.type==='order')return `正しい順番：${q.ans.join(' → ')}`;if(q.type==='label')return q.parts.map((p,i)=>`${p}＝${q.labels[i]}`).join('／');return ''}
 function hint(q){if(q.type==='label')return '中心のVを最初に探し、次に「誰が」「何を」「＝の説明」を確認しよう。';if(q.type==='order')return 'まずS、その次に中心V。疑問文なら先頭に出るパーツを確認しよう。';return '日本語の意味と、文の中の置き場所をもう一度確認しよう。'}
-function next(){const l=levels[state.level];if(state.q<l.qs.length-1){state.q++;state.branchIndex=0;state.branchSelected=false;state.branchDone=false;renderQuestion();$('#questionBox').scrollIntoView({behavior:'smooth',block:'start'})}else{progress[state.level]={done:true,date:Date.now()};save();playClear();confetti();$('#clearText').textContent=`Lv.${l.id}「${l.title}」の生産ラインをすべて通過しました。`;$('#clearModal').classList.add('show');renderLevels()}}
+
+function scrollToQuestionTop(){
+  requestAnimationFrame(()=>setTimeout(()=>{
+    const target=$('#questionBox');
+    if(!target)return;
+    const header=$('.topbar');
+    const offset=(header?.getBoundingClientRect().height||0)+12;
+    const top=window.scrollY+target.getBoundingClientRect().top-offset;
+    window.scrollTo({top:Math.max(0,top),behavior:'smooth'});
+  },80));
+}
+
+function next(){const l=levels[state.level];if(state.q<l.qs.length-1){state.q++;state.branchIndex=0;state.branchSelected=false;state.branchDone=false;renderQuestion();scrollToQuestionTop()}else{progress[state.level]={done:true,date:Date.now()};save();playClear();confetti();$('#clearText').textContent=`Lv.${l.id}「${l.title}」の生産ラインをすべて通過しました。`;$('#clearModal').classList.add('show');renderLevels()}}
 function backHome(returnToLevel=false){$('#game').classList.remove('active');$('#home').classList.remove('hidden');if(returnToLevel)state.returnLevel=state.level;renderLevels();if(!returnToLevel)window.scrollTo({top:0,behavior:'smooth'})}
 function resetQuestion(){renderQuestion()}
 function esc(s){return String(s).replace(/"/g,'&quot;')}
