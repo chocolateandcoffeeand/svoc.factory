@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  background-color: #F1ECE1;
+  background-image:
+    linear-gradient(#2B28230a 1px, transparent 1px),
+    linear-gradient(90deg, #2B28230a 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: #2B2823;
+  font-family: 'Space Grotesk', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+::selection {
+  background: #CC8A34;
+  color: #FAF8F2;
+}
+
+/* scrollbar: factory rail */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #F1ECE1;
+}
+::-webkit-scrollbar-thumb {
+  background: #4A4A42;
+  border-radius: 0;
+}
+
+.brut-border {
+  border: 3px solid #2B2823;
+}
+
+/* hazard stripe: used as a thin accent bar on headers/lanes */
+.hazard-stripe {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #CC8A34,
+    #CC8A34 10px,
+    #2B2823 10px,
+    #2B2823 20px
+  );
+}
+
+/* conveyor belt surface: moving diagonal tread */
+.belt-surface {
+  background-color: #6b6a62;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #5c5b54,
+    #5c5b54 10px,
+    #6b6a62 10px,
+    #6b6a62 24px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
